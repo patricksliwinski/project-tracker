@@ -2,6 +2,6 @@
 
 ## Rails app creation
 
-```
-  rails new rails_7_demo --database=postgresql --css=bootstrap
+``` bash
+rails new project-tracker --database=postgresql --css=bootstrap
 ```
