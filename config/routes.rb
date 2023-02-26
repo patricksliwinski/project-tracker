@@ -6,4 +6,12 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   root "home#index"
+
+  get "/projects", to: "projects#index"
+  resources :projects do
+    resources :sessions
+  end
+
+  get "/tasks", to: "tasks#index"
+
 end

@@ -1,0 +1,16 @@
+<h1><%= @project.name %></h1>
+
+<div class="timer">
+    <p class="timer-time"><span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span></p>
+    <div class="timer-controls">
+        <button class="primary-button" id="button-start">Start</button>
+        <button class="primary-button" id="button-end">End</button>
+        <button hidden id="button-reset">Reset</button>
+    </div>
+</div>
+
+<div hidden>
+    <%= render "sessions/form", session: @session %>
+</div>
+
+<%= javascript_import_module_tag "session-timer" %>

@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  time: 1
+  date: 2023-02-25 18:40:54
+
+two:
+  project: two
+  time: 1
+  date: 2023-02-25 18:40:54

@@ -1,0 +1,80 @@
+<div class="container mt-3">
+
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">0</h1>
+        <p>Projects</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">00:00:00</h1>
+        <p>Total time tracked</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">0</h1>
+        <p>Milestones</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">0</h1>
+        <p>Tasks completed</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <button onClick='showProjectForm()'>Add Project</button>
+
+
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th>Project</th>
+        <th>Last Worked On</th>
+        <th>Total Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="new-project-form" colspan="3" style="display: none">
+          <%= render "projects/form", project: @project%>
+        </td>
+      </tr>
+      <% if current_user.projects.length > 0 %>
+        <% current_user.projects.each do |project| %>
+          <tr>
+            <td><%= link_to project.name, project %></td>
+            <td><%= project.last_worked_on.to_date %></td>
+            <td><%= total_seconds_to_hours(project) %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="3">
+            <button>New Project</button>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+<script>
+  function showProjectForm() {
+    var element = document.getElementById("new-project-form");
+    element.style.display = "";
+    document.getElementById("new-project-name").focus();
+  }
+</script>
