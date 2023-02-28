@@ -99,6 +99,8 @@ GEM
     erubi (1.12.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    groupdate (6.2.0)
+      activesupport (>= 5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.5)
@@ -167,6 +169,8 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.5.0)
       loofah (~> 2.19, >= 2.19.1)
+    rails_charts (0.0.4)
+      rails
     railties (7.0.4.2)
       actionpack (= 7.0.4.2)
       activesupport (= 7.0.4.2)
@@ -232,6 +236,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise
+  groupdate
   importmap-rails (~> 1.1)
   jbuilder
   jsbundling-rails
@@ -239,6 +244,7 @@ DEPENDENCIES
   popper_js (~> 2.11.5)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
+  rails_charts
   selenium-webdriver
   sprockets-rails
   stimulus-rails
