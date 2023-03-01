@@ -3,23 +3,7 @@
 <%= area_chart({10 => 24, 20 => 44, 30 => 57, "text" => 10}, {class: 'box', code: 'true'}) %>
 
 
-<%= calendar_chart Session.for_calendar_chart,
-  class: 'box',
-  code: false,
-  options: {
-    visualMap: {
-      show: true,
-      min: 0,
-      max: 40,
-      orient: 'horizontal'
-    },
-    calendar: [{
-      range: '2023',
-    },]
-  }
-%>
 
-<%= javascript_import_module_tag "echarts" %>
 
 
 

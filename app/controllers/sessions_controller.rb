@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
         @session.date = DateTime.now
         puts @project
         @session.save
+        @project.update(total_time: @project.total_time + @session.time)
         redirect_to project_path(@project)
     end
 

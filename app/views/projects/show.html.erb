@@ -13,4 +13,23 @@
     <%= render "sessions/form", session: @session %>
 </div>
 
+<%= calendar_chart @project.for_calendar_chart,
+  class: 'box',
+  code: false,
+  options: {
+    visualMap: {
+      show: false,
+      min: 0,
+      max: 40,
+      orient: 'horizontal'
+    },
+    calendar: [{
+      range: ['2023-01-01', '2023-05-31'],
+      yearLabel: { show: false },
+    },]
+  }
+%>
+
+<%= javascript_import_module_tag "echarts" %>
+
 <%= javascript_import_module_tag "session-timer" %>
