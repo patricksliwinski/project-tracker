@@ -1,0 +1,5 @@
+.echarts-tooltip{
+    max-width: 300px !important;
+    word-wrap: break-word;
+    overflow: scroll;
+}

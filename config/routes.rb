@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/projects", to: "projects#index"
   resources :projects do
     resources :sessions
+    resources :milestones
   end
 
   get "/tasks", to: "tasks#index"

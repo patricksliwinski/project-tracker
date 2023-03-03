@@ -1,6 +1,6 @@
 <div class="container mt-3">
 
-  <div class="row row-cols-1 row-cols-md-4 g-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col">
     <div class="card">
       <div class="card-body">
@@ -12,7 +12,7 @@
   <div class="col">
     <div class="card">
       <div class="card-body">
-        <h1 class="card-title">00:00:00</h1>
+        <h1 class="card-title"><%= total_seconds_to_hours(@total_time) %></h1>
         <p>Total time tracked</p>
       </div>
     </div>
@@ -22,14 +22,6 @@
       <div class="card-body">
         <h1 class="card-title">0</h1>
         <p>Milestones</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h1 class="card-title">0</h1>
-        <p>Tasks completed</p>
       </div>
     </div>
   </div>
@@ -57,7 +49,7 @@
           <tr>
             <td><%= link_to project.name, project %></td>
             <td><%= project.last_worked_on.to_date %></td>
-            <td><%= total_seconds_to_hours(project) %></td>
+            <td><%= total_seconds_to_hours_minutes(project.total_time) %></td>
           </tr>
         <% end %>
       <% else %>

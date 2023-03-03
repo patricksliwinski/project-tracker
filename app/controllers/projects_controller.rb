@@ -3,11 +3,14 @@ class ProjectsController < ApplicationController
     def index
         @project = Project.new
         @num_projects = current_user.projects.count
+        @total_time = current_user.projects.sum(:total_time)
     end
 
     def show
         @project = Project.find(params[:id])
         @session = Session.new
+        @milestone = Milestone.new
+        @sessions_by_day = @project.for_line_chart
     end
 
     def new
