@@ -11,9 +11,11 @@
         </li>
       </ul>
       <div class="d-flex">
-        <button class="btn btn-primary" type="button">
-          <a href="/users/sign_in">Sign In</a>
-        </button>
+        <% if user_signed_in? %> 
+          <%= button_to "Sign out", destroy_user_session_path, class: "btn btn-outline-success", method: :delete %> 
+        <% else %>
+          <%= button_to "Sign in", new_user_session_path, class: "btn btn-outline-success" %> 
+        <% end %>
       </div>
     </div>
   </div>

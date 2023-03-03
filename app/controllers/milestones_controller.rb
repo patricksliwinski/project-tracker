@@ -7,7 +7,7 @@ class MilestonesController < ApplicationController
         @milestone.save
         @session.date = @milestone.created_at
         @session.save
-        # @project.update(total_time: @project.total_time + @session.time)
+        @project.update(num_milestones: @project.num_milestones + 1)
         redirect_to project_path(@project)
     end
 

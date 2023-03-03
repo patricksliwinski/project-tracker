@@ -4,6 +4,8 @@ class ProjectsController < ApplicationController
         @project = Project.new
         @num_projects = current_user.projects.count
         @total_time = current_user.projects.sum(:total_time)
+        @num_milestones = current_user.projects.sum(:num_milestones)
+        puts @num_milestones
     end
 
     def show
@@ -22,6 +24,7 @@ class ProjectsController < ApplicationController
         @project.user = current_user
         @project.total_time = 0
         @project.last_worked_on = DateTime.now
+        @project.num_milestones = 0
         if @project.save
             redirect_to project_path(@project)
         else
