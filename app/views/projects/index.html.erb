@@ -2,7 +2,7 @@
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col">
-    <div class="card">
+    <div class="card pb-5 shadow">
       <div class="card-body">
         <h1 class="card-title"><%= @num_projects %></h1>
         <p>Projects</p>
@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="col">
-    <div class="card">
+    <div class="card pb-5 shadow">
       <div class="card-body">
         <h1 class="card-title"><%= total_seconds_to_hours(@total_time) %></h1>
         <p>Total time tracked</p>
@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="col">
-    <div class="card">
+    <div class="card pb-5 shadow">
       <div class="card-body">
         <h1 class="card-title"><%= @num_milestones %></h1>
         <p>Milestones</p>
@@ -27,7 +27,7 @@
   </div>
 </div>
 
-  <button onClick='showProjectForm()'>Add Project</button>
+  <button onClick='showProjectForm()' class="btn btn-primary mt-5">Add Project</button>
 
 
   <table class="table">
