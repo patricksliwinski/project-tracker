@@ -13,7 +13,9 @@
 
   <body class="bg-light">
     <%= render "layouts/nav" %>
-    <%= yield %>
+    <div class="container-lg">
+        <%= yield %>
+    </div>
   </body>
 
   <%= javascript_import_module_tag "bootstrap" %>

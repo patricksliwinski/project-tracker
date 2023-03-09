@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -14,5 +13,10 @@ Rails.application.routes.draw do
   end
 
   get "/tasks", to: "tasks#index"
+
+  devise_for :users, controllers: {
+    :sessions => "users/sessions",
+    :registrations => "users/registrations",
+    :passwords => "users/passwords" }
 
 end

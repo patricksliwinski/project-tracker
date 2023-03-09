@@ -51,7 +51,8 @@ window.onload = function () {
     }
     
     function updateTimer () {
-        totalSeconds++;
+        var currentDate = new Date();
+        totalSeconds = Math.floor((currentDate - startDate) / 1000);
         seconds = totalSeconds % 60;
         minutes = Math.floor(totalSeconds / 60) % 60;
         hours = Math.floor(totalSeconds / 3600);

@@ -1,73 +1,95 @@
 <%= stylesheet_link_tag 'chart-style.css' %>
+<%= stylesheet_link_tag 'milestone-style.css' %>
 
-<h1><%= @project.name %></h1>
+<div class="container-lg">
+  <h1 class="mb-5"><%= @project.name %></h1>
 
-<div class="timer">
-    <p class="timer-time"><span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span></p>
-    <div class="timer-controls">
-        <button class="primary-button" id="button-start">Start</button>
-        <button class="primary-button" id="button-end">End</button>
-        <button hidden id="button-reset">Reset</button>
+  <div class="row w-75 mx-auto">
+    <div class="col-md-auto">
+      <div class="card pb-1 shadow px-5 h-100 my-2">
+        <div class="card-body">
+          <%= render "projects/timer" %>
+        </div>
+      </div>
     </div>
-</div>
+    <div class="col">
+      <div class="card pb-1 shadow h-100 my-2">
+        <div class="card-body">
+          <%= render "milestones/form", milestone: @milestone %>
+          <ul class="list-group list-group-flush border-top mt-2" id="milestone-card-list">
+            <% @project.milestones.each do |milestone| %>
+              <% if milestone.created_at %>
+                <li class="list-group-item">
+                  <b><%= milestone.created_at.to_date %></b> <%= milestone.description %>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div hidden>
-    <%= render "sessions/form", session: @session %>
-</div>
+  <div hidden>
+      <%= render "sessions/form", session: @session %>
+  </div>
 
-<%= area_chart [[]],
-  class: 'box',
-  code: false,
-  options: {
-    xAxis: {
-      type: "time",
-      data: []
-    },
-    yAxis: {
-      name: "Cumulative Time (hours)",
-      nameLocation: "middle",
-      nameGap: 50,
-      nameTextStyle: {
-        fontSize: 18,
-        fontWeight: "bolder"
-      }
-    },
-    series: {
-      data: @project.for_line_chart_2[:data],
-      markPoint: {
-        data: @project.for_line_chart_2[:points],
-        symbol: "circle",
-        symbolSize: 10
-      }
-    },
-    tooltip: {
-      show: true,
-      confine: true,
-      formatter: RailsCharts.js('(value) => {
-        let text = "<b>" + value[0].data[0] + "</b><br>"
-        text += "Cumulative Time: " + value[0].data[1].toFixed(2) + " hours"
-
-        if (value[0].data.length > 2) {
-          text += "<br><br><b>Milestones:</b>"
-          for (let i = 2; i < value[0].data.length; i++) {
-            text += "<br><p>" + value[0].data[i] + "</p>"
-          }
+  <%= area_chart [[]],
+    class: 'box',
+    code: false,
+    options: {
+      xAxis: {
+        type: "time",
+        data: [],
+        minInterval: 86400000,
+        axisLabel: {
+          formatter: "{MM}/{dd}"
         }
-        return text
-      }'),
-      className: 'echarts-tooltip echarts-tooltip-dark',
-      appendToBody: true
-    },
-    dataZoom: [{
-      start: 0,
-      end: 100,
-    }],
-  }
-%>
+      },
+      yAxis: {
+        name: "Cumulative Time (hours)",
+        nameLocation: "middle",
+        nameGap: 50,
+        nameTextStyle: {
+          fontSize: 18,
+          fontWeight: "bolder"
+        }
+      },
+      series: {
+        data: @project.for_line_chart_2[:data],
+        markPoint: {
+          data: @project.for_line_chart_2[:points],
+          symbol: "circle",
+          symbolSize: 10
+        }
+      },
+      tooltip: {
+        show: true,
+        confine: true,
+        formatter: RailsCharts.js('(value) => {
+          let text = "<b>" + value[0].data[0] + "</b><br>"
+          text += "Cumulative Time: " + value[0].data[1].toFixed(2) + " hours"
 
+          if (value[0].data.length > 2) {
+            text += "<br><br><b>Milestones:</b>"
+            for (let i = 2; i < value[0].data.length; i++) {
+              text += "<br><p>" + value[0].data[i] + "</p>"
+            }
+          }
+          return text
+        }'),
+        className: 'echarts-tooltip echarts-tooltip-dark',
+        appendToBody: true
+      },
+      dataZoom: [{
+        start: 0,
+        end: 100,
+      }],
+    }
+  %>
 <%
 =begin%>
- <%= calendar_chart @project.for_calendar_chart,
+<%= calendar_chart @project.for_calendar_chart,
   class: 'box',
   code: false,
   options: {
@@ -86,7 +108,9 @@
 <%
 =end%>
 
-<%= render "milestones/form", milestone: @milestone %>
+  
+</div>
+
 
 <%= javascript_import_module_tag "echarts" %>
 

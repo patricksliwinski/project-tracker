@@ -39,11 +39,13 @@ class Project < ApplicationRecord
     data[:points] = []
 
     self.milestones.each do |milestone|
-      session_data[milestone.created_at.to_date].append(milestone.description)
-      point = Hash.new
-      point[:xAxis] = milestone.created_at.to_date
-      point[:yAxis] = session_data[milestone.created_at.to_date][0]
-      data[:points].append(point)
+      if milestone.created_at
+        session_data[milestone.created_at.to_date].append(milestone.description)
+        point = Hash.new
+        point[:xAxis] = milestone.created_at.to_date
+        point[:yAxis] = session_data[milestone.created_at.to_date][0]
+        data[:points].append(point)
+      end
     end
 
     session_data.each do |date, value|

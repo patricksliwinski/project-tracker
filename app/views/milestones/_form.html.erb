@@ -1,6 +1,6 @@
 <%= form_with id: "milestone-form", model: [ @project, @project.milestones.build ] do |form|%>
-    <div>
-        <%= form.text_field :description %>
-        <%= form.submit %>
+    <div class="input-group mb-3">
+        <%= form.text_field :description, :placeholder => "New milestone description", class: "form-control" %>
+        <%= form.submit "Record milestone", class: "btn btn-outline-secondary" %>
     </div>
 <% end %>

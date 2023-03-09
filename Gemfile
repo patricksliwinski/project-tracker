@@ -57,6 +57,8 @@ gem "rails_charts"
 # Used to group by date for charting
 gem "groupdate"
 
+gem "bootstrap"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

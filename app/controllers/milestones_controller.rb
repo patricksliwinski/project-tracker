@@ -2,7 +2,7 @@ class MilestonesController < ApplicationController
     before_action :authenticate_user!
     
     def create
-        @project = Project.find(params[:project_id])
+        @project = current_user.projects.find(params[:project_id])
         @milestone = @project.milestones.create(milestone_params)
         @session = @project.sessions.create()
         @session.time = 0

@@ -1,0 +1,4 @@
+#milestone-card-list {
+    overflow: scroll;
+    max-height: 150px;
+}

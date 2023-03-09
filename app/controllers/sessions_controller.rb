@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
     before_action :authenticate_user!
     
     def create
-        @project = Project.find(params[:project_id])
+        @project = current_user.projects.find(params[:project_id])
         @session = @project.sessions.create(session_params)
         @session.date = DateTime.now
         @session.save
