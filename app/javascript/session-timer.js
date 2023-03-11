@@ -53,9 +53,9 @@ window.onload = function () {
     function updateTimer () {
         var currentDate = new Date();
         totalSeconds = Math.floor((currentDate - startDate) / 1000);
-        seconds = totalSeconds % 60;
-        minutes = Math.floor(totalSeconds / 60) % 60;
-        hours = Math.floor(totalSeconds / 3600);
+        var seconds = totalSeconds % 60;
+        var minutes = Math.floor(totalSeconds / 60) % 60;
+        var hours = Math.floor(totalSeconds / 3600);
 
         if(seconds <= 9) {
             displaySeconds.innerHTML = "0" + seconds;
