@@ -87,8 +87,8 @@
       }],
     }
   %>
-<%
-=begin%>
+
+
 <%= calendar_chart @project.for_calendar_chart,
   class: 'box',
   code: false,
@@ -100,13 +100,15 @@
       orient: 'horizontal'
     },
     calendar: [{
-      range: ['2023-01-01', '2023-05-31'],
+      range: [ Date.today.prev_month(4).strftime("%Y-%m-01"), Date.today.strftime("%Y-%m-%d")],
       yearLabel: { show: false },
+      cellSize: ['auto', 20],
     },]
   }
 %> 
-<%
-=end%>
+
+Hello
+<%= Date.today.prev_month(4).strftime("%Y-%m-%d") %>
 
   
 </div>
