@@ -4,15 +4,4 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-
-  root "home#index"
-
-  get "/projects", to: "projects#index"
-  resources :projects do
-    resources :sessions
-    resources :milestones
-  end
-
-  get "/tasks", to: "tasks#index"
-
 end

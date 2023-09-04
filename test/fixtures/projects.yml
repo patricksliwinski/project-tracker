@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  description: MyString
-  last_worked_on: 2023-02-24 15:06:53
-  total_time: 2023-02-24 15:06:53
-  user: one
+  name: MyString
+  num_milestones: 1
+  num_sessions: 1
+  total_time: 1
 
 two:
-  description: MyString
-  last_worked_on: 2023-02-24 15:06:53
-  total_time: 2023-02-24 15:06:53
-  user: two
+  name: MyString
+  num_milestones: 1
+  num_sessions: 1
+  total_time: 1
