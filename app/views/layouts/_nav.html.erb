@@ -1,0 +1,16 @@
+ <nav class="navbar navbar-expand-sm navbar-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+            <%= button_to "Dashboard", projects_path, class: "btn btn-outline-primary", method: :get %>
+        </li>
+    </ul>
+    <div class="d-flex">
+    <% if user_signed_in? %> 
+        <%= button_to "Sign out", destroy_user_session_path, class: "btn btn-outline-primary", method: :delete %> 
+    <% else %>
+        <%= button_to "Sign in", new_user_session_path, class: "btn btn-outline-primary" %> 
+    <% end %>
+    </div>
+  </div>
+</nav> 
