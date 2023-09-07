@@ -1,0 +1,9 @@
+<%= form_with model: project do |form| %>
+  <div>
+    <%= form.text_field :name, placeholder: "Project name", id: "new-project-name" %>
+    <% project.errors.full_messages_for(:name).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+    <%= form.submit class: "create-project-button"%>
+  </div>
+<% end %>

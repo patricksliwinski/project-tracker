@@ -1,0 +1,73 @@
+<%= stylesheet_link_tag 'table.css' %>
+
+<div class="container mt-3">
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card pb-5 border-0 shadow" style="background: linear-gradient(45deg,#4099ff,#73b4ff)">
+      <div class="card-body">
+        <h1 class="card-title"><%= @num_projects %></h1>
+        <p>Projects</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card pb-5 border-0 shadow" style="background: linear-gradient(45deg,#2ed8b6,#59e0c5)">
+      <div class="card-body">
+        <h1 class="card-title"><%= total_seconds_to_hours(@total_time) %></h1>
+        <p>Total time tracked</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card pb-5 border-0 shadow" style="background: linear-gradient(45deg,#FF5370,#ff869a)">
+      <div class="card-body">
+        <h1 class="card-title"><%= @num_milestones %></h1>
+        <p>Milestones</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <table class="table table-borderless table-striped mt-5 table-hover rounded overflow-hidden shadow" style="color: white; border-collapse: separate; border-spacing: 0px 5px;">
+    <thead class="border-0">
+      <tr>
+        <th>Project</th>
+        <th>Last Worked On</th>
+        <th>Total Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if current_user.projects.length > 0 %>
+        <% current_user.projects.each do |project| %>
+          <tr class="bg-primary border-0" style="">
+            <td><%= link_to project.name, project, class: "project-link"%></td>
+            <td><%= project.updated_at.to_date %></td>
+            <td><%= total_seconds_to_hours_minutes(project.total_time) %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="3">
+            <p class="text-center">No projects. Create a new project to get started</p>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td id="new-project-form" colspan="3" style="display: none">
+          <%= render "projects/form", project: @project%>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button onClick='showProjectForm()' class="btn new-project-button">Add Project</button>
+
+
+<script>
+  function showProjectForm() {
+    var element = document.getElementById("new-project-form");
+    element.style.display = "";
+    document.getElementById("new-project-name").focus();
+  }
+</script>

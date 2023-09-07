@@ -1,0 +1,23 @@
+/* Override bootstrap css */
+td, th {
+    color: white !important;
+    background-color: #4C4F59 !important; 
+    padding: 16px 8px !important;
+}
+
+.project-link {
+    padding: 5px;
+    background-color: #4099ff;
+    text-decoration: none;
+    color: white
+}
+
+.new-project-button {
+    width: 100%;
+    background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+}
+
+.create-project-button {
+    border: none;
+    background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+}

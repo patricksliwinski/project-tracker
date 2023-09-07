@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
     before_action :authenticate_user!
 
     def index
+        @project = Project.new # Needed for the form to create a new project
         @num_projects = current_user.projects.count
         @total_time = current_user.projects.sum(:total_time)
         @num_milestones = current_user.projects.sum(:num_milestones)
