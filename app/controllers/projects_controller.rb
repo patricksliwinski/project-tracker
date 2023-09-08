@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
         @project.user = current_user
         @project.total_time = 0
         @project.num_milestones = 0
+        @project.num_sessions = 0
         if @project.save
             redirect_to project_path(@project)
         else

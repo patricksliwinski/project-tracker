@@ -46,12 +46,6 @@
             <td><%= total_seconds_to_hours_minutes(project.total_time) %></td>
           </tr>
         <% end %>
-      <% else %>
-        <tr>
-          <td colspan="3">
-            <p class="text-center">No projects. Create a new project to get started</p>
-          </td>
-        </tr>
       <% end %>
       <tr>
         <td id="new-project-form" colspan="3" style="display: none">

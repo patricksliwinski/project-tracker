@@ -1,0 +1,10 @@
+.delete {
+    color: rgba(255, 0, 0, 0.5);
+    background: none;
+    border: none;
+    text-decoration: underline;
+    height: 50%;
+    margin-bottom: .5rem;
+    margin-left: 20px;
+    padding-bottom: 3px;
+}
