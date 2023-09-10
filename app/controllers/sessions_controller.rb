@@ -6,6 +6,9 @@ class SessionsController < ApplicationController
         @session = @project.sessions.new(session_params)
         @session.project = @project
         @session.save
+        puts "hello"
+        puts @session.duration
+        puts "hello"
         @project.update(total_time: @project.total_time + @session.duration)
         redirect_to project_path(@project)
     end
@@ -14,3 +17,4 @@ class SessionsController < ApplicationController
         def session_params
             params.require(:session).permit(:duration)
         end
+end

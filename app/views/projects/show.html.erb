@@ -7,7 +7,7 @@
   </div>
 
 
-  <div class="container mt-3">
+  <div id="project-data" class="container mt-3">
     <div class="row row-cols-1 row-cols-md-2 g-5">
       <div class="col">
         <div class="card pb-5 pt-5 border-primary shadow h-100" style="background: none;">
@@ -19,16 +19,24 @@
       <div class="col">
         <div class="card pb-5 pt-5 border-primary shadow h-100 text-center text-white" style="background: none;">
           <div class="card-body">
-              <h1>Sessions: <%= @project.num_sessions %></h1>
-              <h1>Milestones: <%= @project.num_milestones %></h1>
-              <h1>Total Time: <%= @project.total_time %></h1>
+              <h2>Sessions: <%= @project.num_sessions %></h2>
+              <h2>Milestones: <%= @project.num_milestones %></h2>
+              <h2>Total Time: <%= total_seconds_to_hours_minutes(@project.total_time) %></h2>
           </div>
         </div>
       </div>
     </div>
+
+    <canvas id="canvas" class="mt-5"></canvas>
+
   </div>
 
   <div hidden>
       <%= render "sessions/form", session: @session %>
   </div>
+
+  <%= content_tag :div, id: "heatmap-data", data: {data: @project.sessions.group_by_day(:created_at).sum(:duration).to_a} do %>
+  <% end %>
+
+  <%= javascript_include_tag "heatmap.js" %>
 </div>

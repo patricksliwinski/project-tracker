@@ -4,3 +4,4 @@
 //= link global.css
 //= link project.css
 //= link timer.css
+//= link_tree ../javascript

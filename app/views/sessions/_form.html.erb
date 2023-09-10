@@ -1,6 +1,6 @@
 <%= form_with id: "session-form", model: [ @project, @project.sessions.build ] do |form|%>
     <div>
-        <%= form.number_field :time, id: "new-session-time"%>
+        <%= form.number_field :duration, id: "new-session-time"%>
         <%= form.submit id: "new-session-submit" %>
     </div>
 <% end %>
