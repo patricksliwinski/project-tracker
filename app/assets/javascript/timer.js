@@ -1,4 +1,4 @@
-window.onload = function () {
+timer = function () {
     
     var totalSeconds = 0;
     var displayHours = document.getElementById("hours");
@@ -20,6 +20,7 @@ window.onload = function () {
   
     buttonStart.onclick = function() {
         if (state == State.STOPPED) {
+            console.log("here");
             clearInterval(Interval);
             Interval = setInterval(updateTimer, 1000);
             buttonStart.innerHTML = "Pause";
@@ -80,3 +81,5 @@ window.onload = function () {
         }
     }
 }
+
+timer();
