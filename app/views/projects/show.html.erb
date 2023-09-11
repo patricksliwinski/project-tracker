@@ -27,7 +27,10 @@
       </div>
     </div>
 
+    <%= render "milestones/form", session: @milestone %>
+
     <canvas id="canvas" class="mt-5"></canvas>
+    <canvas id="timeline-canvas" class="mt-5"></canvas>
 
   </div>
 
@@ -38,5 +41,9 @@
   <%= content_tag :div, id: "heatmap-data", data: {data: @project.sessions.group_by_day(:created_at).sum(:duration).to_a} do %>
   <% end %>
 
+  <%= content_tag :div, id: "timeline-data", data: {data: @milestone_data} do %>
+  <% end %>
+
   <%= javascript_include_tag "heatmap.js" %>
+  <%= javascript_include_tag "timeline.js" %>
 </div>

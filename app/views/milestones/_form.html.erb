@@ -1,0 +1,8 @@
+<%= form_with class: "mt-3", id: "milestone-form", model: [ @project, @project.milestones.build ] do |form|%>
+    <div>
+        <%= form.text_field :description, class: "w-100 pt-2 pb-2 form-control form-control-lg", id: "new-milestone-description", placeholder: "Milestone description", style: "background-color: #4C4F59; border: none" %>
+        <div hidden>
+            <%= form.submit class: "hidden", id: "new-milestone-submit" %>
+        </div>
+    </div>
+<% end %>

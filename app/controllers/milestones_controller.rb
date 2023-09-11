@@ -14,3 +14,4 @@ class MilestonesController < ApplicationController
         def milestone_params
             params.require(:milestone).permit(:description)
         end
+end

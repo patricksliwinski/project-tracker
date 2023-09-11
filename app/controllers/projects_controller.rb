@@ -10,6 +10,12 @@ class ProjectsController < ApplicationController
 
     def show
         @project = current_user.projects.find(params[:id])
+        @milestone_data = @project.milestones.map do |milestone| 
+            [milestone.description, milestone.created_at]
+        end
+        @milestone_data.insert(0, ["Start", @project.created_at])
+        @milestone_data = @milestone_data.sort_by { |milestone| milestone[1] }
+        puts @milestone_data[0][1]
     end
 
     def new

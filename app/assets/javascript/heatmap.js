@@ -1,20 +1,27 @@
-const parent = document.getElementById('project-data');
-const canvas = document.getElementById('canvas');
-const dataDiv = document.getElementById('heatmap-data');
-const data = parseData();
+const heatmapParent = document.getElementById('project-data');
+const heatmapCanvas = document.getElementById('canvas');
+const heatmapDataDiv = document.getElementById('heatmap-data');
+const heatmapData = parseHeatmap();
 
-const ctx = canvas.getContext('2d');
-window.addEventListener('resize', resizeCanvas, false);
+const heatmapCtx = heatmapCanvas.getContext('2d');
+window.addEventListener('resize', resizeHeatmap, false);
 
 const day = 24 * 60 * 60 * 1000;
 const year = 365 * day;
 const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-let squareSize = 15;
 let gap = 2;
 
 const color1 = "#DEF9F3"; // Red
 const color2 = "#0F5244"; // Green
+
+let dayNum = 0;
+let startDate = getStartDate();
+let endDate = new Date();
+
+let numDays = Math.ceil((endDate - startDate) / day);
+let numCols = Math.ceil(numDays / 7);
+let squareSize = (heatmapCanvas.width - (numCols - 1) * (gap)) / numCols;
 
 
 function getStartDate() {
@@ -32,26 +39,20 @@ function formatDateToYYYYMMDD(date) {
     return `${year}-${month}-${day}`;
   }
 
-function draw() {
-    let dayNum = 0;
-    let startDate = getStartDate();
-    let endDate = new Date();
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    let numDays = Math.ceil((endDate - startDate) / day);
-    let numCols = Math.ceil(numDays / 7);
-    squareSize = (canvas.width - (numCols - 1) * (gap)) / numCols;
+function drawHeatmap() {
+    heatmapCtx.clearRect(0, 0, heatmapCanvas.width, heatmapCanvas.height);
     
     while (startDate <= endDate) {
 
-        if (data.has(formatDateToYYYYMMDD(startDate))) {
-            ctx.fillStyle = interpolateColor(color1, color2, .8);
+        if (heatmapData.has(formatDateToYYYYMMDD(startDate))) {
+            heatmapCtx.fillStyle = interpolateColor(color1, color2, .8);
         } else {
-            ctx.fillStyle = interpolateColor(color1, color2, 0);
+            heatmapCtx.fillStyle = interpolateColor(color1, color2, 0);
         }
-        ctx.fillRect(Math.floor(dayNum / 7) * (squareSize + gap), 30 + dayNum % 7 * (squareSize + gap), squareSize, squareSize);
+        heatmapCtx.fillRect(Math.floor(dayNum / 7) * (squareSize + gap), 30 + dayNum % 7 * (squareSize + gap), squareSize, squareSize);
         if (startDate.getDay() == 0 && startDate.getDate() <= 7 && Math.floor(dayNum / 7) < numCols - 1) {
-            ctx.font = "bold " + squareSize + "px serif";;
-            ctx.fillText(monthNames[startDate.getMonth()], Math.floor(dayNum / 7) * (squareSize + gap), 20);
+            heatmapCtx.font = "bold " + squareSize + "px serif";;
+            heatmapCtx.fillText(monthNames[startDate.getMonth()], Math.floor(dayNum / 7) * (squareSize + gap), 20);
         } 
         startDate = new Date(startDate.getTime() + day);
         dayNum++;
@@ -60,14 +61,23 @@ function draw() {
     console.log(formatDateToYYYYMMDD(startDate));
 }
 
-function resizeCanvas() {
-    canvas.width = parent.offsetWidth - 24;
-    canvas.height = 500;
-    draw();
+function resizeHeatmap() {
+    heatmapCanvas.width = heatmapParent.offsetWidth - 24;
+
+    dayNum = 0;
+    startDate = getStartDate();
+    endDate = new Date();
+
+    numDays = Math.ceil((endDate - startDate) / day);
+    numCols = Math.ceil(numDays / 7);
+    squareSize = (heatmapCanvas.width - (numCols - 1) * (gap)) / numCols;
+
+    heatmapCanvas.height = 30 + 7 * (squareSize + gap);
+    drawHeatmap();
 }
 
-function parseData() {
-    let data = dataDiv.attributes["data-data"].nodeValue;
+function parseHeatmap() {
+    let data = heatmapDataDiv.attributes["data-data"].nodeValue;
     return new Map(JSON.parse(data).map(tuple => [tuple[0], tuple[1]]));
 }
 
@@ -103,4 +113,4 @@ function interpolateColor(color1, color2, value) {
     return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1)}`;
   }
 
-resizeCanvas();
+resizeHeatmap();
