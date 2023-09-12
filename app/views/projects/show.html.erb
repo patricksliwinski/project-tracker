@@ -44,6 +44,8 @@
   <%= content_tag :div, id: "timeline-data", data: {data: @milestone_data} do %>
   <% end %>
 
-  <%= javascript_include_tag "heatmap.js" %>
-  <%= javascript_include_tag "timeline.js" %>
+  <%= javascript_include_tag "heatmap.js", defer: true %>
+  <%= javascript_include_tag "timeline.js", defer: true %> 
+  
+
 </div>

@@ -1,10 +1,10 @@
-const timelineParent = document.getElementById('project-data');
-const timelineCanvas = document.getElementById('timeline-canvas');
-const timelineDataDiv = document.getElementById('timeline-data');
-const timelineData = parseTimeline();
+var timelineParent = document.getElementById('project-data');
+var timelineCanvas = document.getElementById('timeline-canvas');
+var timelineDataDiv = document.getElementById('timeline-data');
+var timelineData = parseTimeline();
 console.log(timelineData);
 
-const timelineCtx = timelineCanvas.getContext('2d');
+var timelineCtx = timelineCanvas.getContext('2d');
 window.addEventListener('resize', resizeTimeline, false);
 
 
@@ -15,8 +15,8 @@ function drawTimeline() {
     timelineCtx.lineWidth = 5;
 
     
-    for (let i = 0; i < timelineData.length; i++) {
-        let centerY = 50 + i * 100;
+    for (var i = 0; i < timelineData.length; i++) {
+        var centerY = 50 + i * 100;
         timelineCtx.beginPath();
         timelineCtx.moveTo(timelineCanvas.width / 2, centerY);
         timelineCtx.arc(timelineCanvas.width / 2, centerY, 20, 0, 2 * Math.PI);
@@ -39,7 +39,7 @@ function resizeTimeline() {
 }
 
 function parseTimeline() {
-    let data = timelineDataDiv.attributes["data-data"].nodeValue;
+    var data = timelineDataDiv.attributes["data-data"].nodeValue;
     return JSON.parse(data);
 }
 
