@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
         puts @session.duration
         puts "hello"
         @project.update(total_time: @project.total_time + @session.duration)
+        @project.update(num_sessions: @project.num_sessions + 1)
         redirect_to project_path(@project)
     end
 
