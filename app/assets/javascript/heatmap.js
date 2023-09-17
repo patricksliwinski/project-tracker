@@ -25,9 +25,10 @@ heatmap = function() {
     var squareSize = (heatmapCanvas.width - (numCols - 1) * (gap)) / numCols;
 
 
-    function getStartDate() {
-        var today = new Date();
-        var startDate = today - (1 * year);
+    function getStartDate(num_months = 12) {
+        var startDate = new Date();
+        startDate.setFullYear(startDate.getFullYear() - Math.floor(num_months / 12));
+        startDate.setMonth(startDate.getMonth() - num_months % 12);
         startDate = startDate - (new Date(startDate)).getDay() * day;
         return new Date(startDate);
     }
@@ -65,8 +66,13 @@ heatmap = function() {
     function resizeHeatmap() {
         heatmapCanvas.width = heatmapParent.offsetWidth - 24;
 
+        num_months = 12;
+        if (heatmapCanvas.width < 700) {
+            num_months = 6;
+        }
+
         dayNum = 0;
-        startDate = getStartDate();
+        startDate = getStartDate(num_months);
         endDate = new Date();
 
         numDays = Math.ceil((endDate - startDate) / day);
