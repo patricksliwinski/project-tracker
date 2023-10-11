@@ -8,29 +8,21 @@
 
 
   <div id="project-data" class="container mt-3">
-    <div class="row row-cols-1 row-cols-md-2 g-5">
+    <div class="row row-cols-1 row-cols-md-1 g-5">
       <div class="col">
-        <div class="card pb-5 pt-5 border-primary shadow h-100" style="background: none;">
+        <div class="card pb-5 pt-5 h-100" style="background: linear-gradient(45deg,#2ed8b6,#59e0c5)">
           <div class="card-body">
             <%= render "projects/timer" %>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card pb-5 pt-5 border-primary shadow h-100 text-center text-white" style="background: none;">
-          <div class="card-body">
-              <h2>Sessions: <%= @project.num_sessions %></h2>
-              <h2>Milestones: <%= @project.num_milestones %></h2>
-              <h2>Total Time: <%= total_seconds_to_hours_minutes(@project.total_time) %></h2>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <%= render "milestones/form", session: @milestone %>
 
     <canvas id="canvas" class="mt-5"></canvas>
     <canvas id="timeline-canvas" class="mt-5"></canvas>
+
+    <%= render "milestones/form", session: @milestone %>
 
   </div>
 

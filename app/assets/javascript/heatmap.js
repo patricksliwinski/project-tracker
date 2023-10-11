@@ -6,6 +6,14 @@ heatmap = function() {
 
     var heatmapCtx = heatmapCanvas.getContext('2d');
     window.addEventListener('resize', resizeHeatmap, false);
+    heatmapCanvas.addEventListener('click', function(e) {
+        let canvasUrl = heatmapCanvas.toDataURL();
+        const tempLink = document.createElement('a');
+        tempLink.href = canvasUrl;
+        tempLink.download = "heatmap";
+        tempLink.click();
+        tempLink.remove();
+    })
 
     var day = 24 * 60 * 60 * 1000;
     var year = 365 * day;
@@ -13,8 +21,8 @@ heatmap = function() {
 
     var gap = 2;
 
-    var color1 = "#DEF9F3"; // Red
-    var color2 = "#0F5244"; // Green
+    var color1 = "#ffffff"; // White
+    var color2 = "#2ed8b6"; // Green
 
     var dayNum = 0;
     var startDate = getStartDate();
@@ -24,6 +32,9 @@ heatmap = function() {
     var numCols = Math.ceil(numDays / 7);
     var squareSize = (heatmapCanvas.width - (numCols - 1) * (gap)) / numCols;
 
+    
+    var maxSessionTime = Math.max(...[...heatmapData.values()]);
+    maxSessionTime = Math.max(1, maxSessionTime);
 
     function getStartDate(num_months = 12) {
         var startDate = new Date();
@@ -45,9 +56,10 @@ heatmap = function() {
         heatmapCtx.clearRect(0, 0, heatmapCanvas.width, heatmapCanvas.height);
         
         while (startDate <= endDate) {
-
-            if (heatmapData.has(formatDateToYYYYMMDD(startDate))) {
-                heatmapCtx.fillStyle = interpolateColor(color1, color2, .8);
+            let dateString = formatDateToYYYYMMDD(startDate);
+            if (heatmapData.has(dateString)) {
+                console.log(heatmapData.get(dateString));
+                heatmapCtx.fillStyle = interpolateColor(color1, color2, heatmapData.get(dateString) / maxSessionTime);
             } else {
                 heatmapCtx.fillStyle = interpolateColor(color1, color2, 0);
             }

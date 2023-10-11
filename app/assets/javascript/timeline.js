@@ -7,10 +7,18 @@ console.log(timelineData);
 var timelineCtx = timelineCanvas.getContext('2d');
 window.addEventListener('resize', resizeTimeline, false);
 
+timelineCanvas.addEventListener('click', function(e) {
+    let canvasUrl = timelineCanvas.toDataURL();
+    const tempLink = document.createElement('a');
+    tempLink.href = canvasUrl;
+    tempLink.download = "timeline";
+    tempLink.click();
+    tempLink.remove();
+})
 
 function drawTimeline() {
-    timelineCtx.strokeStyle = "#0F5244";
-    timelineCtx.fillStyle = "#0F5244";
+    timelineCtx.strokeStyle = "#2ed8b6";
+    timelineCtx.fillStyle = "#2ed8b6";
     timelineCtx.clearRect(0, 0, timelineCanvas.width, timelineCanvas.height);
     timelineCtx.lineWidth = 5;
 
