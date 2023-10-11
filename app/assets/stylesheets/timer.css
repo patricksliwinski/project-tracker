@@ -1,4 +1,13 @@
 .timer p {
-    color: white;
-    font-size: 3.5rem !important;
+  color: white;
+  font-size: 3.5rem !important;
+}
+
+.btn-primary {
+  background-color: #2ed8b6;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #4099ff;
 }
