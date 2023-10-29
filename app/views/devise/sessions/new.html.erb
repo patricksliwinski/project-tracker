@@ -1,17 +1,19 @@
-<div class="d-flex vw-100 align-items-center justify-content-center" style="height: 60vh">
+<%= stylesheet_link_tag 'auth.css' %>
 
-  <div class="card ps-5 pe-5">
+<div class="d-flex vw-100 align-items-center justify-content-center" style="height: 50vh">
 
-    <div class="card-header bg-white">
+  <div class="card ps-5 pe-5 bg-transparent" style="background: linear-gradient(45deg,#2ed8b6,#59e0c5)">
+
+    <div class="card-header bg-transparent">
       <h2>Log in</h2>
     </div>
 
     <div class="card-body">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb-3", placeholder: "email" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb-3", placeholder: "email"%>
         <%= f.password_field :password, autocomplete: "current-password", class: "form-control mb-3", placeholder: "password" %>
 
-        <%= f.submit "Log in", class: "btn btn-primary mb-5" %>
+        <%= f.submit "Log in", class: "btn login-button mb-5" %>
 
       <% end %>
 
