@@ -2,7 +2,6 @@ var timelineParent = document.getElementById('project-data');
 var timelineCanvas = document.getElementById('timeline-canvas');
 var timelineDataDiv = document.getElementById('timeline-data');
 var timelineData = parseTimeline();
-console.log(timelineData);
 
 var timelineCtx = timelineCanvas.getContext('2d');
 window.addEventListener('resize', resizeTimeline, false);

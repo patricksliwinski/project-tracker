@@ -59,6 +59,7 @@ heatmap = function() {
             let dateString = formatDateToYYYYMMDD(startDate);
             if (heatmapData.has(dateString)) {
                 console.log(heatmapData.get(dateString));
+                console.log(dateString)
                 heatmapCtx.fillStyle = interpolateColor(color1, color2, heatmapData.get(dateString) / maxSessionTime);
             } else {
                 heatmapCtx.fillStyle = interpolateColor(color1, color2, 0);
@@ -72,7 +73,6 @@ heatmap = function() {
             dayNum++;
         }
 
-        console.log(formatDateToYYYYMMDD(startDate));
     }
 
     function resizeHeatmap() {
