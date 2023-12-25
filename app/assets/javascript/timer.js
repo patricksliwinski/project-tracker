@@ -22,6 +22,7 @@ timer = function () {
             Interval = setInterval(updateTimer, 1000);
             state = State.RUNNING;
             totalSeconds = 0;
+            startTime = Date.now()
         } else if (state == State.RUNNING) {
             session_time_input.value = totalSeconds;    
             session_form.submit();

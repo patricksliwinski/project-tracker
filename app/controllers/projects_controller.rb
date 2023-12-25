@@ -9,9 +9,10 @@ class ProjectsController < ApplicationController
     end
 
     def show
+        time_zone = ActiveSupport::TimeZone["Eastern Time (US & Canada)"]
         @project = current_user.projects.find(params[:id])
         @milestone_data = @project.milestones.map do |milestone| 
-            [milestone.description, milestone.created_at]
+            [milestone.description, milestone.created_at.in_time_zone(time_zone)]
         end
         @milestone_data.insert(0, ["Start", @project.created_at])
         @milestone_data = @milestone_data.sort_by { |milestone| milestone[1] }
