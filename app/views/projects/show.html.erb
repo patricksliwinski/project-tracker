@@ -16,7 +16,6 @@
           </div>
         </div>
       </div>
-    </div>
 
 
     <canvas id="canvas" class="mt-5"></canvas>
@@ -30,7 +29,7 @@
       <%= render "sessions/form", session: @session %>
   </div>
 
-  <%= content_tag :div, id: "heatmap-data", data: {data: @project.sessions.group_by_day(:created_at).sum(:duration).to_a} do %>
+  <%= content_tag :div, id: "heatmap-data", data: {data: @project.sessions.group_by_day(:created_at, time_zone: "Eastern Time (US & Canada)").sum(:duration).to_a} do %>
   <% end %>
 
   <%= content_tag :div, id: "timeline-data", data: {data: @milestone_data} do %>

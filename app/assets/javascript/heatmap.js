@@ -58,7 +58,6 @@ heatmap = function() {
         while (startDate <= endDate) {
             let dateString = formatDateToYYYYMMDD(startDate);
             if (heatmapData.has(dateString)) {
-                console.log(heatmapData.get(dateString));
                 heatmapCtx.fillStyle = interpolateColor(color1, color2, heatmapData.get(dateString) / maxSessionTime);
             } else {
                 heatmapCtx.fillStyle = interpolateColor(color1, color2, 0);
@@ -72,7 +71,6 @@ heatmap = function() {
             dayNum++;
         }
 
-        console.log(formatDateToYYYYMMDD(startDate));
     }
 
     function resizeHeatmap() {
@@ -87,7 +85,7 @@ heatmap = function() {
         startDate = getStartDate(num_months);
         endDate = new Date();
 
-        numDays = Math.ceil((endDate - startDate) / day);
+        numDays = Math.ceil((endDate - startDate) / day + 1);
         numCols = Math.ceil(numDays / 7);
         squareSize = (heatmapCanvas.width - (numCols - 1) * (gap)) / numCols;
 
